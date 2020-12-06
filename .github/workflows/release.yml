@@ -23,20 +23,14 @@ jobs:
       - uses: battila7/get-version-action@v2
         id: get_version
 
-      - name: prepare sources
+      - name: Prepare sources
         run: bash .github/prepare-sources.sh ${{ steps.get_version.outputs.version }}
 
-      - name: list debian root
-        run: sudo apt-get install -y tree && tree -p .debpkg
+      - name: List debian build root
+        run: sudo apt-get install -y tree && tree -p ${{ env.PACKAGE_NAME }}-${{ steps.get_version.outputs.version }}
 
-      - uses: jiro4989/build-deb-action@v2
-        with:
-          package: ${{ env.PACKAGE_NAME }}
-          package_root: .debpkg
-          maintainer: ${{ env.MAINTAINER }}
-          version: ${{ github.ref }}
-          arch: 'all'
-          desc: '${{ env.DESC }}'
+      - name: Build Debian package 
+        run: dpkg-deb --build ${{ env.PACKAGE_NAME }}-${{ steps.get_version.outputs.version }}
 
       - uses: actions/upload-artifact@v2
         with:
