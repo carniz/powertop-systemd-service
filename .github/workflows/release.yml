@@ -32,6 +32,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: artifact-deb
+          name: powertop-systemd-service-${{ github.ref }}.deb
           path: |
             ./*.deb
