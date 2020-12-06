@@ -1,0 +1,45 @@
+name: release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  MAINTAINER: 'carniz'
+  DESC: 'A powertop SystemD service with accompanying udev rules that starts/stops the service when the battery charging status changes.'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: prepare sources
+        run: |
+          mkdir -p .debpkg/etc/systemd/system
+          mkdir -p .debpkg/usr/local/bin
+          mkdir -p .debpkg/etc/udev/rules.d
+          cp powertop.service .debpkg/etc/systemd/system
+          cp async-start-powertop .debpkg/usr/local/bin
+          cp async-stop-powertop .debpkg/usr/local/bin
+          cp power_supply.rules .debpkg/etc/udev/rules.d
+
+      - uses: jiro4989/build-deb-action@v2
+        with:
+          package: powertop-systemd-service
+          package_root: .debpkg
+          maintainer: ${{ env.MAINTAINER }}
+          version: ${{ github.ref }}
+          arch: 'all'
+          desc: '${{ env.DESC }}'
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifact-deb
+          path: |
+            ./*.deb
