@@ -17,5 +17,5 @@ sudo chmod 755 /usr/local/bin/async-stop-powertop
 sudo udevadm control --reload-rules
 ```
 
-## TODO
-- Build + release .deb package
+## Debian / Ubuntu packages
+Debian/Ubuntu .deb files can be downloaded from [releases](https://github.com/carniz/powertop-systemd-service/releases/)
