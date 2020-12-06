@@ -2,8 +2,7 @@
 
 chown root:root /etc/systemd/system/powertop.service
 chown root:root /etc/udev/rules.d/power_supply.rules
-chown root:root /usr/local/bin/async-start-powertop
-chown root:root /usr/local/bin/async-stop-powertop
+find /usr/local/bin -type f -name "async-*-powertop" -exec chown root:root {} \;
 
 chmod 644 /etc/systemd/system/powertop.service
 chmod 644 /etc/udev/rules.d/power_supply.rules
