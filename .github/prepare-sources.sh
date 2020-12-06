@@ -12,3 +12,4 @@ cp power_supply.rules .debpkg/etc/udev/rules.d
 mkdir .debpkg/debian
 cat debian/control.template | envsubst > .debpkg/debian/control
 cp debian/postinst .debpkg/debian/postinst
+chmod 755 .debpkg/debian/postinst

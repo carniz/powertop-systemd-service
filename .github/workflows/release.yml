@@ -26,6 +26,9 @@ jobs:
       - name: prepare sources
         run: bash .github/prepare-sources.sh ${{ steps.get_version.outputs.version }}
 
+      - name: list debian root
+        run: ls -l .debpkg
+
       - uses: jiro4989/build-deb-action@v2
         with:
           package: ${{ env.PACKAGE_NAME }}
