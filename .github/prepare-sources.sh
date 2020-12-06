@@ -7,7 +7,7 @@ mkdir -p ${BUILD_DIR}/etc/systemd/system
 mkdir -p ${BUILD_DIR}/usr/local/bin
 mkdir -p ${BUILD_DIR}/etc/udev/rules.d
 cp powertop.service ${BUILD_DIR}/etc/systemd/system
-cp async-start-powertop ${BUILD_DIR}/usr/local/bin
+cp async-restart-powertop ${BUILD_DIR}/usr/local/bin
 cp async-stop-powertop ${BUILD_DIR}/usr/local/bin
 cp power_supply.rules ${BUILD_DIR}/etc/udev/rules.d
 mkdir ${BUILD_DIR}/DEBIAN

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-logger -s "Starting the powertop service"
-echo "systemctl start powertop" | at now

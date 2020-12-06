@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+logger -s "Restarting the powertop service"
+echo "systemctl restart powertop.service" | at now
