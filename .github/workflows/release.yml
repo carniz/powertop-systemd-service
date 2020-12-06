@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
 
 env:
+  PACKAGE_NAME: powertop-systemd-service
   MAINTAINER: 'carniz'
   DESC: 'A powertop SystemD service with accompanying udev rules that starts/stops the service when the battery charging status changes.'
 
@@ -18,12 +19,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - uses: battila7/get-version-action@v2
+        id: get_version
+
       - name: prepare sources
-        run: bash .github/prepare-sources.sh
+        run: bash .github/prepare-sources.sh ${{ steps.get_version.outputs.version }}
 
       - uses: jiro4989/build-deb-action@v2
         with:
-          package: powertop-systemd-service
+          package: ${{ env.PACKAGE_NAME }}
           package_root: .debpkg
           maintainer: ${{ env.MAINTAINER }}
           version: ${{ github.ref }}
@@ -32,6 +37,6 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: powertop-systemd-service-${{ github.ref }}.deb
+          name: ${{ env.PACKAGE_NAME }}-${{ steps.get_version.outputs.version }}.deb
           path: |
             ./*.deb

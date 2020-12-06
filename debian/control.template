@@ -1,0 +1,7 @@
+Package: powertop-systemd-service
+Version: ${VERSION}
+Maintainer: carniz
+Description: A powertop service for SystemD
+Homepage: https://github.com/carniz/powertop-systemd-service
+Architecture: all
+Depends: powertop, at
