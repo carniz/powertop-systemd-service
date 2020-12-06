@@ -1,0 +1,9 @@
+[Unit]
+Description=Auto-tuning power management service
+
+[Service]
+ExecStart=/usr/sbin/powertop --auto-tune
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

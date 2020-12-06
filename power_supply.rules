@@ -1,0 +1,2 @@
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_STATUS}=="Discharging", RUN+="/usr/local/bin/async-start-powertop"
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_STATUS}=="Charging", RUN+="/usr/local/bin/async-stop-powertop"

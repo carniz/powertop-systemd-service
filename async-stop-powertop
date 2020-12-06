@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+logger -s "Stopping the powertop service"
+echo "systemctl stop powertop" | at now
