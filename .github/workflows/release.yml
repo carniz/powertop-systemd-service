@@ -27,7 +27,7 @@ jobs:
         run: bash .github/prepare-sources.sh ${{ steps.get_version.outputs.version }}
 
       - name: list debian root
-        run: tree -p .debpkg
+        run: apt-get install -y tree && tree -p .debpkg
 
       - uses: jiro4989/build-deb-action@v2
         with:
