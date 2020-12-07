@@ -11,4 +11,5 @@ chmod 755 /usr/local/bin/async-restart-powertop
 chmod 755 /usr/local/bin/async-stop-powertop
 
 systemctl daemon-reload
+udevadm control --reload-rules
 systemctl enable powertop.service
